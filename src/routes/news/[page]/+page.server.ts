@@ -2,7 +2,7 @@
 import type { PageServerLoad } from './$types';
 
 import { getTimeDifference } from '../../../utils/time';
-import { getPostsInChannel, getThreadByPostId, getUserByIds, type MatterMostPostsResponse, type MatterMostUser, type Posts } from '../../discussion/[post]/+page.server';
+import { getPostsInChannel, type Posts, getUserByIds, getThreadByPostId, type MatterMostPostsResponse, type MatterMostUser } from '../../../utils/api';
 
 
 export const load: PageServerLoad = async ({ params }) => {

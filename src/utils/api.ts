@@ -75,11 +75,31 @@ export type Reaction = {
     channel_id: string;
 }
 
+export type File = {
+    id:                string;
+    user_id:           string;
+    post_id:           string;
+    channel_id:        string;
+    create_at:         number;
+    update_at:         number;
+    delete_at:         number;
+    name:              string;
+    extension:         string;
+    size:              number;
+    mime_type:         string;
+    width:             number;
+    height:            number;
+    has_preview_image: boolean;
+    mini_preview:      string;
+    remote_id:         string;
+    archived:          boolean;
+}
+
 export type PostsMetadata = {
     embeds?: Embed[];
     images?: Image[];
     reactions?: Reaction[];
-
+    files?: File[];
 }
 
 export type Posts = {
@@ -141,12 +161,11 @@ const getUserByIds = async (userIds:any) => {
 }
 
 const getPostsInChannel = async (page: string) => {
-    const response = await fetch(`https://coderpull.com/api/v4/channels/${channelId}/posts?page=${page}&per_page=20`, {
+    const response = await fetch(`https://coderpull.com/api/v4/channels/${channelId}/posts?page=${page}&per_page=50`, {
         headers: {
             Authorization: `Bearer ${apiKey}`
         }
     });
-
     return await response.json() as MatterMostPostsResponse;
 }
 

@@ -5,6 +5,9 @@ export const getTimeDifference = (timestamp: number) => {
     let diffInSeconds = Math.floor((now - then.getTime()) / 1000);
   
     const units = [
+      { count: 31536000, name: 'year' },
+      { count: 2592000, name: 'month' },
+      { count: 604800, name: 'week' },
       { count: 86400, name: 'day' },
       { count: 3600, name: 'hour' },
       { count: 60, name: 'minute' },

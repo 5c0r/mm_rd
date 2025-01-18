@@ -1,7 +1,8 @@
 <header class="corner">
 	<nav>
-		<a href="https://coderpush.com">
-		<img fetchpriority="high" width="937" height="152" src="https://coderpush.com/wp-content/uploads/sites/615/2024/03/CP-Logo2-White.svg" class="attachment-full size-full wp-image-549 astra-logo-svg" alt="">				</a>
+		<a href="/">
+			<img fetchpriority="high" width="937" height="152" src="https://coderpush.com/wp-content/uploads/sites/615/2024/03/CP-Logo2-White.svg" class="attachment-full size-full wp-image-549 astra-logo-svg" alt="">
+		</a>
 	</nav>
 </header>
 

@@ -95,6 +95,6 @@ export const actions = {
             return redirect(307, '/');
         }
 
-        return redirect(303, '/news/0');
+        return redirect(303, '/news');
     }
 }

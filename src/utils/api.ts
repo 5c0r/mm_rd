@@ -160,8 +160,34 @@ const getUserByIds = async (userIds:any) => {
     return (await response.json()) as MatterMostUser[];
 }
 
-const getPostsInChannel = async (page: string) => {
-    const response = await fetch(`https://coderpull.com/api/v4/channels/${channelId}/posts?page=${page}&per_page=50`, {
+// TODO: before,after,since // before prev_post_id
+const getPostsInChannel = async (before: string | null, after: string | null) => {
+
+    let requestUrl = `https://coderpull.com/api/v4/channels/${channelId}/posts`;
+
+    // TODO: Some url parameters builder
+    if(before) {
+        requestUrl += `?before=${before}`;
+    }
+
+    if(after) {
+        requestUrl += `?after=${after}`;
+    }
+
+
+    const response = await fetch(requestUrl, {
+        headers: {
+            Authorization: `Bearer ${apiKey}`
+        }
+    });
+    return await response.json() as MatterMostPostsResponse;
+
+    // TODO: if we get enough 10 , just get 10
+}
+
+// Ref: https://api.mattermost.com/?uid=1enrc5etaidaux1kenpfh5s19w&sid=m7stzaabrbntpba4uzrchr6hmy#tag/posts/operation/GetPostsForChannel
+const getPostsInChannelSince = async (page: string, since: number) => {
+    const response = await fetch(`https://coderpull.com/api/v4/channels/${channelId}/posts&since=${since}`, {
         headers: {
             Authorization: `Bearer ${apiKey}`
         }

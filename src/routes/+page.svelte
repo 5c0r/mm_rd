@@ -7,7 +7,7 @@
 
 <h4>Welcome to CoderNews</h4>
 <p>To be able to comment in discussion. Please Login using your CoderPull Personal Access Token (Profile -> Security -> Personal Access Token)</p>
-<p>If you are just browsing around, then let's go to the <a href="/news/0">News</a> page</p>
+<p>If you are just browsing around, then let's go to the <a href="/news">News</a> page</p>
 
 {#if data.loggedIn}
     <p>Your token is valid</p>

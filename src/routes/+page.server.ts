@@ -38,7 +38,7 @@ export const actions = {
         if(isOK) {
             const mattermostKey = data.get('mattermostKey')?.toString();
             cookies.set('mattermostKey', mattermostKey!, { path: '/', expires: new Date(Date.now() + 3600 * 1000) });
-            return redirect(303, '/news/0');
+            return redirect(303, '/news');
         }
     }
 }

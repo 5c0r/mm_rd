@@ -1,16 +1,18 @@
 
 import type { PageServerLoad } from './$types';
 
-import { getTimeDifference } from '../../../utils/time';
-import { getPostsInChannel, type Posts, getUserByIds, getThreadByPostId, type MatterMostPostsResponse, type MatterMostUser } from '../../../utils/api';
-import { getScore } from '../../../utils/score';
+import { getTimeDifference } from '../../utils/time';
+import { getPostsInChannel, type Posts, getUserByIds, getThreadByPostId, type MatterMostPostsResponse, type MatterMostUser } from '../../utils/api';
+import { getScore } from '../../utils/score';
 
 
-export const load: PageServerLoad = async ({ params }) => {
-    const page = params.page;
-    const responseData = await getPostsInChannel(page);
+export const load: PageServerLoad = async ({ params, request }) => {
+    
+    const before = new URL(request.url).searchParams.get('before');
+    const after = new URL(request.url).searchParams.get('after');
 
-    console.log('posts response', responseData);
+    const responseData = await getPostsInChannel(before, after);
+
     const allPostsByOrder = responseData.order.map( (postId:any) => responseData.posts[postId]);
     const userIds = allPostsByOrder.map((post:Posts) => post.user_id)
     const allPostIds = allPostsByOrder.map((post:Posts) => post.id);
@@ -23,8 +25,6 @@ export const load: PageServerLoad = async ({ params }) => {
             .map( (postId:any) => thread.posts[postId])
             .map((post:Posts) => ({ id: post.id, reply_count: post.reply_count })))
         .flat()
-
-    const hasNext = responseData.prev_post_id !== "";
 
 
     const posts = allPostsByOrder
@@ -75,6 +75,7 @@ export const load: PageServerLoad = async ({ params }) => {
     return {
         posts,
         users,
-        hasNext
+        prev_post_id: responseData.prev_post_id,
+        next_post_id: responseData.next_post_id
     }
 };

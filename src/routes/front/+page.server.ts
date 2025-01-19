@@ -12,6 +12,7 @@ export const load = async ({ request }) => {
     const sinceParams =requestUrl.searchParams.get('since');
     const since = sinceParams ? parseISO(sinceParams).getTime() : Date.now();
 
+    // Since we listed basically all from the time here, we can also do client-side sorting
     const sortByTopRatedParams = requestUrl.searchParams.get('sortByTopRated');
     const sortByTopRated = sortByTopRatedParams ? sortByTopRatedParams === 'true' : false;
 

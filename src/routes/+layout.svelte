@@ -19,6 +19,10 @@
 	</footer>
 </div>
 
+<svelte:head>
+	<title>CoderShare</title>
+</svelte:head>
+
 <style>
 	.app {
 		display: flex;

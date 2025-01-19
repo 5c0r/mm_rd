@@ -3,6 +3,8 @@
 		<a href="/">
 			<img fetchpriority="high" width="937" height="152" src="https://coderpush.com/wp-content/uploads/sites/615/2024/03/CP-Logo2-White.svg" class="attachment-full size-full wp-image-549 astra-logo-svg" alt="">
 		</a>
+		<a href ="/news">News</a>
+		<a href ="/front">Front</a>
 	</nav>
 </header>
 
@@ -43,7 +45,7 @@
 		height: 100%;
 		align-items: center;
 		padding: 0 0.5rem;
-		color: var(--color-text);
+		color: white;
 		font-weight: 700;
 		font-size: 0.8rem;
 		text-transform: uppercase;

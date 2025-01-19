@@ -22,7 +22,7 @@
 			<h4>Nobody Here But Us Chickens! 🐔</h4>
 			<!-- svelte-ignore a11y_click_events_have_key_events -->
 			<!-- svelte-ignore a11y_no_static_element_interactions -->
-			<a target="_self" on:click={history.back()}>Back to the fun part!</a>  
+			<a target="_self" onclick={() => history.back()}>Back to the fun part!</a>  
 		{:else}
 			{#each posts as post}
 				<PostListItem post={post} />

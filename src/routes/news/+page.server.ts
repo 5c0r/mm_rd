@@ -14,7 +14,7 @@ export const load: PageServerLoad = async ({ params, request }) => {
     const responseData = await getPostsInChannel(before, after);
 
     const allPostsByOrder = responseData.order.map( (postId:any) => responseData.posts[postId]);
-    const userIds = allPostsByOrder.map((post:Posts) => post.user_id)
+    const userIds = [...new Set(allPostsByOrder.map((post:Posts) => post.user_id))]
     const allPostIds = allPostsByOrder.map((post:Posts) => post.id);
 
     const users = await getUserByIds(userIds)

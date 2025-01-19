@@ -80,7 +80,7 @@ export const load = async ({ request }) => {
             const author = users.find((user:MatterMostUser) => user.id === post.user_id);
             const embedWithUrl = post?.metadata?.embeds?.find((embed:any) => embed?.url);
             const since = getTimeDifference(post.create_at);
-            const score = getScore(post);
+            const score = getScore(post, thread?.reply_count);
 
             // Edge case, sometime a post with pictures and then the main url is not embedded
             if(!embedWithUrl) {

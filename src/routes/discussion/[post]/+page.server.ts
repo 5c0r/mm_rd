@@ -1,7 +1,6 @@
-import { getThreadByPostId, getUserByIds, type Posts } from "../../../utils/api";
+import { getThreadByPostId, getUserByIds, type MatterMostPostsResponse, type Posts } from "../../../utils/api";
 import { getScore } from "../../../utils/score";
 import { getTimeDifference } from "../../../utils/time";
-import { CP_API_KEY } from '$env/static/private';
 import { redirect } from "@sveltejs/kit";
 
 
@@ -21,10 +20,19 @@ export const load = async ({ params }) => {
     const allUserIds = discussions.map((d:Posts) => d.user_id);
     const allUserInDiscussion = await getUserByIds(allUserIds);
 
-    // Timestamp
+
+    const threadResponse = [await getThreadByPostId(mainTopic!.id)]; 
+    const threadReplyCount = threadResponse
+        .map((thread:MatterMostPostsResponse) => 
+            thread.order
+            .map( (postId:string) => thread.posts[postId])
+            .map((post:Posts) => ({ id: post.id, reply_count: post.reply_count })))
+        .flat()
+
+    // TODO: Since Timestamp could be moved as "client-side thing" instead
     const since = getTimeDifference(mainTopic?.create_at ?? Date.now());
     // Score
-    const score = getScore(mainTopic!);
+    const score = getScore(mainTopic! , threadReplyCount.find((x:any) => x.id === mainTopic?.id)?.reply_count ?? 0);
 
     const author = allUserInDiscussion.find((user:any) => user.id === mainTopic?.user_id);
     const comments = discussions

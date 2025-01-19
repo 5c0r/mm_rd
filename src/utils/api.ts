@@ -134,7 +134,7 @@ export type MatterMostPostsResponse = {
     first_inaccessible_post_time: number;
 }
 
-const getThreadByPostId = async (postId: string) => {
+const getThreadByPostId = async (postId: string) : Promise<MatterMostPostsResponse> => {
     const response = await fetch(`https://coderpull.com/api/v4/posts/${postId}/thread`, {
         headers: {
             Authorization: `Bearer ${apiKey}`
@@ -147,7 +147,7 @@ const getThreadByPostId = async (postId: string) => {
     } else {
         // TODO: Handle rate-limiting / 429 error
         console.log('error', response)
-        return [];
+        return null;
     }
 
 }

@@ -1,6 +1,5 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import { resolveRoute } from '$app/paths';
 	import PostListItem from '../../components/PostListItem.svelte';
 
 
@@ -44,6 +43,10 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
+	}
+
+	ul { 
+		list-style-type: none;
 	}
 	
 	.pagination {

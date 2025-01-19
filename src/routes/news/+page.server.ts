@@ -22,10 +22,9 @@ export const load: PageServerLoad = async ({ params, request }) => {
     const threadReplyCount = threadResponse
         .map((thread:MatterMostPostsResponse) => 
             thread.order
-            .map( (postId:any) => thread.posts[postId])
+            .map( (postId:string) => thread.posts[postId])
             .map((post:Posts) => ({ id: post.id, reply_count: post.reply_count })))
         .flat()
-
 
     const posts = allPostsByOrder
         // TODO: See if we can filter some type out (i.e: "system_add_to_channel", "system_join_channel", "system_****")
@@ -40,7 +39,7 @@ export const load: PageServerLoad = async ({ params, request }) => {
             const author = users.find((user:MatterMostUser) => user.id === post.user_id);
             const embedWithUrl = post?.metadata?.embeds?.find((embed:any) => embed?.url);
             const since = getTimeDifference(post.create_at);
-            const score = getScore(post);
+            const score = getScore(post, thread?.reply_count);
 
             // Edge case, sometime a post with pictures and then the main url is not embedded
             if(!embedWithUrl) {

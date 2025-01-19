@@ -14,7 +14,7 @@
 
 	<footer>
 		<p>
-			Welcome to <a href="https://coderpush.com">CoderNews</a> . A Product of <a href="https://coderpush.com">CoderPush</a>
+			Welcome to <a href="https://coderpush.com">CoderShare</a> . A Product of <a href="https://coderpush.com">CoderPush</a>
 		</p>
 	</footer>
 </div>

@@ -45,10 +45,7 @@
 		flex-direction: column;
 		justify-content: center;
 	}
-
-	ul {
-		list-style-type: none;
-	}
+	
 	.pagination {
 		display: flex;
 		justify-content: space-between;

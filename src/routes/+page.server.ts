@@ -32,7 +32,7 @@ export const actions = {
         const isOK = responseToMM.ok;
 
         if(!isOK) {
-            return fail(401, { message: 'Mattermost login failed' });
+            return fail(401, { message: 'Mattermost PAT check request failed' });
         }
 
         if(isOK) {

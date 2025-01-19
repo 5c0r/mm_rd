@@ -22,5 +22,5 @@
 
 <form method="POST">
     <input type="password" name="mattermostKey" placeholder="CoderPull Personal Access Token">
-    <button type="submit">Login</button>
+    <button type="submit">Add MatterMost PAT</button>
 </form>

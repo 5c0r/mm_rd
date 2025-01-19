@@ -115,7 +115,7 @@ export const load = async ({ request }) => {
             }
         })
         // Poor man's sorting, if sortByTopRated is true, then sort by score, otherwise sort by create_at
-        .sort((a:PostsWithScore, b:PostsWithScore) => sortByTopRated ? b.score - a.score : a.create_at - b.create_at)
+        .sort((a:PostsWithScore, b:PostsWithScore) => sortByTopRated ? b.score - a.score : b.create_at - a.create_at)
 
         return {
             posts,

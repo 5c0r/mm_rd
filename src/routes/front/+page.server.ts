@@ -1,16 +1,19 @@
 import { parseISO } from "date-fns";
 import { isBefore } from 'date-fns/isBefore';
 import { isAfter } from 'date-fns/isAfter';
-import { getPostsInChannelWithPage, getThreadByPostId, getUserByIds, type MatterMostPostsResponse, type MatterMostUser, type Posts } from "../../utils/api";
+import { getPostsInChannelWithPage, getThreadByPostId, getUserByIds, type MatterMostPostsResponse, type MatterMostUser, type Posts, type PostsWithScore } from "../../utils/api";
 import { getScore } from "../../utils/score";
 import { getTimeDifference } from "../../utils/time";
 import asyncPool from "tiny-async-pool";
 
 export const load = async ({ request }) => {
 
-    const sinceParams = new URL(request.url).searchParams.get('since')
+    const requestUrl = new URL(request.url);
+    const sinceParams =requestUrl.searchParams.get('since');
     const since = sinceParams ? parseISO(sinceParams).getTime() : Date.now();
 
+    const sortByTopRatedParams = requestUrl.searchParams.get('sortByTopRated');
+    const sortByTopRated = sortByTopRatedParams ? sortByTopRatedParams === 'true' : false;
 
     // Loop until we get all the posts from the search result
     // While the final posts from the search result is from a earlier date than our query
@@ -111,6 +114,8 @@ export const load = async ({ request }) => {
                 origin
             }
         })
+        // Poor man's sorting, if sortByTopRated is true, then sort by score, otherwise sort by create_at
+        .sort((a:PostsWithScore, b:PostsWithScore) => sortByTopRated ? b.score - a.score : a.create_at - b.create_at)
 
         return {
             posts,

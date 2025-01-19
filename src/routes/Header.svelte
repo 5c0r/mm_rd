@@ -4,7 +4,7 @@
 			<img fetchpriority="high" width="937" height="152" src="https://coderpush.com/wp-content/uploads/sites/615/2024/03/CP-Logo2-White.svg" class="attachment-full size-full wp-image-549 astra-logo-svg" alt="">
 		</a>
 		<a href ="/news">News</a>
-		<a href ="/front">Front</a>
+		<a href ="/front">Past</a>
 	</nav>
 </header>
 

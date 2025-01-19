@@ -126,6 +126,10 @@ export type Posts = {
     metadata?:        PostsMetadata;
 }
 
+export interface PostsWithScore extends Posts {
+    score: number;
+}
+
 export type MatterMostPostsResponse = {
     order:                        string[];
     posts:                        Record<string,Posts>;

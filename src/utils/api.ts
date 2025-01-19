@@ -141,7 +141,15 @@ const getThreadByPostId = async (postId: string) => {
         }
     });
 
-    return await response.json() as MatterMostPostsResponse;
+    if(response.ok) {
+        const responseData = await response.json() as MatterMostPostsResponse;
+        return responseData;
+    } else {
+        // TODO: Handle rate-limiting / 429 error
+        console.log('error', response)
+        return [];
+    }
+
 }
 
 const channelId = 'y6psyjn58idczfjgrd198b8byw';
@@ -173,12 +181,23 @@ const getPostsInChannel = async (before: string | null, after: string | null) =>
         requestUrl += `?after=${after}`;
     }
 
+    const response = await fetch(requestUrl, {
+        headers: {
+            Authorization: `Bearer ${apiKey}`
+        }
+    });
+    return await response.json() as MatterMostPostsResponse;
+}
+
+const getPostsInChannelWithPage = async (page: number) => {
+    let requestUrl = `https://coderpull.com/api/v4/channels/${channelId}/posts?page=${page}&per_page=100`;
 
     const response = await fetch(requestUrl, {
         headers: {
             Authorization: `Bearer ${apiKey}`
         }
     });
+
     return await response.json() as MatterMostPostsResponse;
 }
 
@@ -193,4 +212,4 @@ const getPostsInChannelSince = async (since: number) => {
     return await response.json() as MatterMostPostsResponse;
 }
 
-export { getUserByIds, getPostsInChannel, getThreadByPostId, getPostsInChannelSince };
+export { getUserByIds, getPostsInChannel, getThreadByPostId, getPostsInChannelSince, getPostsInChannelWithPage };

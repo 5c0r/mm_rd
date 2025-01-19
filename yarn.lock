@@ -620,6 +620,11 @@
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.15.tgz#596a1747233694d50f6ad8a7869fcb6f56cf5841"
   integrity sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==
 
+"@types/tiny-async-pool@^2.0.3":
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/@types/tiny-async-pool/-/tiny-async-pool-2.0.3.tgz#bc57a368c17aecbbfe641c69bcd2223ce17fc843"
+  integrity sha512-n3l1s538tKo9RBoHs4I3DG/VmD3VYhF5mHcgu1sU4Lq7JCNBtxnpBy3OkWSbZsp5r5QOuplh2UkXXXwufoAuNQ==
+
 "@typescript-eslint/eslint-plugin@8.20.0":
   version "8.20.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-8.20.0.tgz#b47a398e0e551cb008c60190b804394e6852c863"
@@ -2101,6 +2106,11 @@ tar@^7.4.0:
     minizlib "^3.0.1"
     mkdirp "^3.0.1"
     yallist "^5.0.0"
+
+tiny-async-pool@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/tiny-async-pool/-/tiny-async-pool-2.1.0.tgz#3ec126568c18a7916912fb9fbecf812337ec6b84"
+  integrity sha512-ltAHPh/9k0STRQqaoUX52NH4ZQYAJz24ZAEwf1Zm+HYg3l9OXTWeqWKyYsHu40wF/F0rxd2N2bk5sLvX2qlSvg==
 
 tiny-glob@^0.2.9:
   version "0.2.9"
